@@ -1,0 +1,27 @@
+// schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+  id      Int      @id @default(autoincrement())
+  email   String   @unique
+  name    String?
+}
+
+model Produto {
+  id          Int     @id @default(autoincrement())
+  nome        String
+  descricao   String?
+  preco       Float
+  estoque     Int     @default(0)
+  criadoEm    DateTime @default(now())
+  atualizadoEm DateTime @updatedAt
+  @@map("produto")
+}
