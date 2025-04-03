@@ -32,22 +32,24 @@ Instalação
 Clone o repositório:
 
 bash
-Copy
+
 git clone https://github.com/elielmsilvatec/prisma_Node
+
 cd api-produtos-prisma
+
 Instale as dependências:
 
 bash
-Copy
+
 npm install
 Configure o banco de dados (SQLite):
 
 bash
-Copy
+
 npx prisma migrate dev --name init
 Executando a aplicação
 bash
-Copy
+
 node server.js
 A API estará disponível em: http://localhost:3000
 
@@ -65,7 +67,7 @@ DELETE /produtos/:id - Remove um produto
 
 Exemplo de requisição (POST /produtos)
 json
-Copy
+
 {
   "nome": "Notebook",
   "descricao": "Notebook i5 8GB RAM",
@@ -74,7 +76,7 @@ Copy
 }
 🗃️ Modelo do Banco de Dados
 prisma
-Copy
+
 model Produto {
   id          Int      @id @default(autoincrement())
   nome        String
