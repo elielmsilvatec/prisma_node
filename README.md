@@ -1,67 +1,92 @@
-🚀 Express + Manipulação de Arrays em JavaScript
-Este projeto combina um servidor simples em Express.js com uma série de exemplos de manipulação de arrays em JavaScript. Ele abrange desde criação e acesso até métodos de modificação e transformação.
+README - API de Produtos com Prisma e Node.js
+📝 Descrição
+Este projeto é uma API CRUD (Create, Read, Update, Delete) para gerenciamento de produtos, desenvolvida com Node.js, Prisma ORM e SQLite como banco de dados.
 
-📌 Como Executar
-Certifique-se de ter o Node.js instalado.
+✨ Funcionalidades
+✅ Criar novos produtos
 
-Abra o terminal e digite o seguinte comando:
-node index.js
-Acesse http://localhost:3000/ no navegador.
+✅ Listar todos os produtos
 
-🛠️ Tecnologias Utilizadas
-Node.js 🟢
+✅ Buscar produto por ID
 
-Express.js ⚡
+✅ Atualizar informações do produto
 
-JavaScript (Arrays) 🔢
+✅ Remover produtos
 
-🧩 Funcionalidades
-🌍 Servidor Express
-O servidor contém uma única rota:
+🛠️ Tecnologias
+Node.js - Ambiente de execução JavaScript
 
-js
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-});
-Ele responde com "Hello World!" quando acessado.
+Prisma - ORM moderno para bancos de dados
 
-🔄 Manipulação de Arrays
-✅ Criação e Acesso:
-Criação literal e com new Array()
+SQLite - Banco de dados relacional embutido
 
-Acesso por índice
+Express - Framework web para Node.js
 
-Obtendo primeiro e último elemento
+🚀 Como executar o projeto
+Pré-requisitos
+Node.js (v14 ou superior)
 
-🎨 Modificação:
-push() / pop()
+npm ou yarn
 
-unshift() / shift()
+Instalação
+Clone o repositório:
 
-splice()
+bash
+Copy
+git clone https://github.com/seu-usuario/api-produtos-prisma.git
+cd api-produtos-prisma
+Instale as dependências:
 
-sort() / reverse()
+bash
+Copy
+npm install
+Configure o banco de dados (SQLite):
 
-🔍 Acesso e Transformação:
-slice()
+bash
+Copy
+npx prisma migrate dev --name init
+Executando a aplicação
+bash
+Copy
+node server.js
+A API estará disponível em: http://localhost:3000
 
-concat()
+📚 Rotas da API
+Produtos
+POST /produtos - Cria um novo produto
 
-join() / toString()
+GET /produtos - Lista todos os produtos
 
-🔁 Iteração:
-forEach()
+GET /produtos/:id - Busca um produto específico
 
-map() / filter() / reduce()
+PUT /produtos/:id - Atualiza um produto
 
-find() / findIndex()
+DELETE /produtos/:id - Remove um produto
 
-some() / every()
-
-🔎 Outros Métodos Úteis:
-includes()
-
-indexOf() / lastIndexOf()
-
-✨ Autor
-elielmsilvatec
+Exemplo de requisição (POST /produtos)
+json
+Copy
+{
+  "nome": "Notebook",
+  "descricao": "Notebook i5 8GB RAM",
+  "preco": 3500.00,
+  "estoque": 10
+}
+🗃️ Modelo do Banco de Dados
+prisma
+Copy
+model Produto {
+  id          Int      @id @default(autoincrement())
+  nome        String
+  descricao   String?
+  preco       Float
+  estoque     Int      @default(0)
+  criadoEm    DateTime @default(now())
+  atualizadoEm DateTime @updatedAt
+  @@map("produto")
+}
+🛠️ Comandos úteis
+Comando	Descrição
+npx prisma studio	Abre interface visual do banco de dados
+npx prisma migrate dev	Executa novas migrações
+npx prisma generate	Gera o cliente Prisma
