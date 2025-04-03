@@ -33,7 +33,7 @@ Clone o repositório:
 
 bash
 Copy
-git clone https://github.com/seu-usuario/api-produtos-prisma.git
+git clone https://github.com/elielmsilvatec/prisma_Node
 cd api-produtos-prisma
 Instale as dependências:
 
