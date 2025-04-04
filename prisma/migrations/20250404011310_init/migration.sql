@@ -1,14 +1,3 @@
-/*
-  Warnings:
-
-  - You are about to drop the `post` table. If the table is not empty, all the data it contains will be lost.
-
-*/
--- DropTable
-PRAGMA foreign_keys=off;
-DROP TABLE "post";
-PRAGMA foreign_keys=on;
-
 -- CreateTable
 CREATE TABLE "produto" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -19,3 +8,14 @@ CREATE TABLE "produto" (
     "criadoEm" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "atualizadoEm" DATETIME NOT NULL
 );
+
+-- CreateTable
+CREATE TABLE "Usuario" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "nome" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "password" TEXT NOT NULL
+);
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Usuario_email_key" ON "Usuario"("email");

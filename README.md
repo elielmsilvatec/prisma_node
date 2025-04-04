@@ -28,67 +28,62 @@ Node.js (v14 ou superior)
 
 npm ou yarn
 
-Instalação
+## Instalação
 Clone o repositório:
-
-bash
-
 git clone https://github.com/elielmsilvatec/prisma_Node
 
-cd api-produtos-prisma
-
-Instale as dependências:
-
-bash
-
+## Navegue até a pasta do projeto.
+Instale as dependências
 npm install
-Configure o banco de dados (SQLite):
 
-bash
+## Verifica o arquivo .env
+DATABASE_URL="file:./dev.db" 
+ou se for mysql
+DATABASE_URL="mysql://user:password@localhost:3306/nome_banco"
+
+## Verifica o arquivo schema.prisma pra ver se o SQLite está configurado
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+caso seja mysql
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+## Configure o banco de dados (SQLite):
+npx prisma migrate dev --name init
+
+## Verifica a conexão com o banco de dados 
+npx prisma migrate dev
+
+## Caso mude de Banco apaga a pasta migrations (isso apagara todas as migrates)
+Remove-Item -Recurse -Force prisma\migrations 
+
+## Depois resetar migrate 
+npx prisma migrate reset
+
+## Executando a aplicação
+node index.js
+
+## node index.js
+A API estará disponível em: http://localhost:3000
+
+
 
 npx prisma migrate dev --name init
 Executando a aplicação
-bash
 
-node server.js
-A API estará disponível em: http://localhost:3000
+
+
 
 📚 Rotas da API
 Produtos
 POST /produtos - Cria um novo produto
-
 GET /produtos - Lista todos os produtos
-
 GET /produtos/:id - Busca um produto específico
-
 PUT /produtos/:id - Atualiza um produto
-
 DELETE /produtos/:id - Remove um produto
 
-Exemplo de requisição (POST /produtos)
-json
-
-{
-  "nome": "Notebook",
-  "descricao": "Notebook i5 8GB RAM",
-  "preco": 3500.00,
-  "estoque": 10
-}
-🗃️ Modelo do Banco de Dados
-prisma
-
-model Produto {
-  id          Int      @id @default(autoincrement())
-  nome        String
-  descricao   String?
-  preco       Float
-  estoque     Int      @default(0)
-  criadoEm    DateTime @default(now())
-  atualizadoEm DateTime @updatedAt
-  @@map("produto")
-}
-🛠️ Comandos úteis
-Comando	Descrição
-npx prisma studio	Abre interface visual do banco de dados
-npx prisma migrate dev	Executa novas migrações
-npx prisma generate	Gera o cliente Prisma

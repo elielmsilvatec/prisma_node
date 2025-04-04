@@ -8,20 +8,27 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-model User {
-  id      Int      @id @default(autoincrement())
-  email   String   @unique
-  name    String?
-}
+// model User {
+//   id    Int     @id @default(autoincrement())
+//   email String  @unique
+//   name  String?
+// }
 
 model Produto {
-  id          Int     @id @default(autoincrement())
-  nome        String
-  descricao   String?
-  preco       Float
-  estoque     Int     @default(0)
-  criadoEm    DateTime @default(now())
+  id           Int      @id @default(autoincrement())
+  nome         String
+  descricao    String?
+  preco        Float
+  estoque      Int      @default(0)
+  criadoEm     DateTime @default(now())
   atualizadoEm DateTime @updatedAt
+
   @@map("produto")
+}
+
+model Usuario {
+  id       Int    @id @default(autoincrement())
+  nome     String
+  email    String @unique
+  password String
 }
