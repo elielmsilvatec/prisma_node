@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const produtosRouter = require('./src/produtosController')  
 const userRouter = require('./src/userController')
+const tarefasController = require('./src/tarefasController')
 const session = require('express-session')
 
 // configurando sessão
@@ -16,6 +17,7 @@ app.use(session({
 app.use(express.json())
 app.use('/produtos', produtosRouter) // Aqui está prefixando todas as rotas com /produtos
 app.use('/users', userRouter)
+app.use('/tarefas', tarefasController)
 
 const PORT = 3000
 app.listen(PORT, () => {

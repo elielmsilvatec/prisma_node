@@ -27,8 +27,22 @@ model Produto {
 }
 
 model Usuario {
-  id       Int    @id @default(autoincrement())
+  id       Int      @id @default(autoincrement())
   nome     String
-  email    String @unique
+  email    String   @unique
   password String
+
+  tarefas  Tarefas[] // Relacionamento de Tarefas de 1/muitos
+
+  @@map("usuario")
+}
+
+model Tarefas {
+  id       Int      @id @default(autoincrement())
+  nome String
+  descricao String?
+  usuario  Usuario  @relation(fields: [usuarioId], references: [id]) //define o relacionamento com o modelo Usuario
+  usuarioId Int     // atua como a chave estrangeira.
+
+  @@map("tarefas")
 }

@@ -30,7 +30,7 @@ npm ou yarn
 
 ## Instalação
 Clone o repositório:
-git clone https://github.com/elielmsilvatec/prisma_Node
+git clone https://github.com/elielmsilvatec/prisma_node
 
 ## Navegue até a pasta do projeto.
 Instale as dependências
@@ -72,11 +72,12 @@ node index.js
 A API estará disponível em: http://localhost:3000
 
 
+## Comandos importantes do prisma
+ Atualiza diretamente o banco de dados com base no esquema (schema.prisma), sem gerar ou aplicar migrações.
+ npx prisma db push
 
-npx prisma migrate dev --name init
-Executando a aplicação
-
-
+Puxa o estado atual do banco de dados para gerar ou atualizar o arquivo schema.prisma.
+npx prisma db pull
 
 
 📚 Rotas da API
@@ -86,4 +87,21 @@ GET /produtos - Lista todos os produtos
 GET /produtos/:id - Busca um produto específico
 PUT /produtos/:id - Atualiza um produto
 DELETE /produtos/:id - Remove um produto
+Users
+Produtos
+POST /Users - Cria um novo usuario
+GET /Users - Lista todos os usuario
+GET /Users/:id - Busca um usuario específico
+PUT /Users/:id - Atualiza um usuario
+DELETE /Users/:id - Remove um usuario
+Tarefas
+POST /tarefas - Cria uma nova tarefa
+GET /tarefas - Lista todas as tarefas
+GET /tarefas/:id - Busca uma tarefa especifica
+PUT /tarefas/:id - Atualiza uma tarefa
+DELETE /tarefas/:id - Remove uma tarefa
 
+
+## ATENÇÃO:
+Para acessar as rotas de Tarefas é preciso está logado /users/login
+Cada tarefa pertence ao um usuário específico, o arquivo middleware.js faz essa verificação.
